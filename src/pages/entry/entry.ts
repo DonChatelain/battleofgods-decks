@@ -31,6 +31,7 @@ export class EntryPage {
     this.storage
       .get('prevData')
       .then(data => {
+        if (!data) return;
         data.isPreviousData = true;
         this.prevData = data;
       })
