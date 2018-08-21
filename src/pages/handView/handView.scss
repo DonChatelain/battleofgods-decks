@@ -1,23 +1,48 @@
 hand-view {
 
+  background-color: #f3f3f3;
+
   .show-discards-btn {
     font-size: 1.2rem;
-    opacity: 0.5;
+    opacity: 0.8;
+    font-weight: 500;
   }
 
   .hand-control {
     width: 100%;
     height: 60px;
     display: flex;
-    justify-content: center;
-
-    .show-discards-btn, .filler {
-      width: 60px;
-      font-size: 1.2rem;
-    }
+    justify-content: space-between;
+    align-items: center;
 
     .draw-btn {
-      width: 100px;
+      font-weight: bold;
+    }
+
+    .char-info, .filler {
+      line-height: 0.5;
+      font-size: 1.3rem;
+      padding-left: 15px;
+      font-weight: 600;
+
+      .char-name {
+
+      }
+      .char-health {
+        position: relative;
+        left: 15px;
+
+        &:before {
+          content: '';
+          background-image: url(../../assets/imgs/heart.svg);
+          position: absolute;
+          top: 3px;
+          left: -11px;
+          width: 1rem;
+          height: 1rem;
+          background-repeat: no-repeat;
+        }
+      }
     }
 
     > * {
@@ -31,6 +56,13 @@ hand-view {
 
     .card-header {
       position: relative;
+      display: flex;
+      justify-content: space-between;
+
+      span:last-child {
+        font-weight: bold;
+        letter-spacing: 4px;
+      }
     }
 
     &.basic-card:before {
@@ -58,6 +90,9 @@ hand-view {
   .no-hand-info {
     text-align: center;
     margin-top: 50%;
+    font-weight: 500;
+    opacity: 0.5;
+    font-size: 1.8rem;
   }
 
 }

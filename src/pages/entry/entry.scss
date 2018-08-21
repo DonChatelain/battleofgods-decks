@@ -1,8 +1,16 @@
 page-entry {
 
-  button {
-    margin: 50% auto 0 auto !important;
-    display: block !important
+  .button-wrapper {
+    width: 50%;
+    height: 30%;
+    margin: 20% auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    button:first-child {
+      font-weight: bold;
+    }
   }
 
   h1 {
@@ -36,5 +44,14 @@ page-entry {
 
   .content {
     background: linear-gradient(107deg,#c94b4b,#4b134f);
+  }
+
+  footer {
+    text-align: center;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #b9b9b9;
   }
 }

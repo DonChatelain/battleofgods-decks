@@ -1,6 +1,12 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar hideBackButton>
     <ion-title>Hand ({{hand.length}})</ion-title>
+    <ion-buttons left>
+      <button ion-button (click)="quitToEntry()">
+        <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+        &nbsp;Quit
+      </button>
+    </ion-buttons>
     <ion-buttons end>
       <button ion-button outline color="danger" (click)="showDiscardPile()" class="show-discards-btn">
         Discards
@@ -11,6 +17,13 @@
   
 <ion-content>
   <section class="hand-control">
+    <!--  characters info  -->
+    <div class="char-info">
+      <p *ngFor="let char of characterData">
+        <span class="char-name">{{char.name}} {{getMinorCount(char)}}</span> <span class="char-health">{{char.health}}</span>
+      </p>
+    </div>
+    <!-- Draw Btn -->
     <button ion-button (click)="drawCard()" class="draw-btn">
       Draw ({{deck.length}})
     </button>
@@ -18,6 +31,8 @@
 
   <div *ngIf="hand.length === 0" class="no-hand-info">
     No Cards in Hand
+    <br/>
+    Draw {{startingCardCount}} Cards To Get Started
   </div>
 
   <ion-card
@@ -28,7 +43,7 @@
   >
     <ion-card-header>
       <span>{{card.name}}</span>
-      <span>{{card.atk}}/{{card.def}}</span>
+      <span>{{card.atk == -1 ? '*' : card.atk}}/{{card.def == -1 ? '*' : card.def}}</span>
     </ion-card-header>
     <ion-card-content>
       {{card.effect}}

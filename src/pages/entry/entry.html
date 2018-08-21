@@ -1,10 +1,26 @@
 <ion-content padding>
   <h1><span>Tournament </span><span>of </span><span>Nyx</span></h1>
 
-  <button ion-button outline color="light" (click)="startNewGame()">
-    New Game
-  </button>
-  <!-- <button ion-button (click)="continuePreviousGame()">
-    Continue (as previousTeam)
-  </button> -->
+  <div class="button-wrapper">
+    <button 
+      ion-button
+      outline
+      color="light"
+      (click)="startNewGame()"
+    >
+      New Game
+    </button>
+
+    <button
+      ion-button
+      outline
+      color="light"
+      *ngIf="prevData != null"
+      (click)="continuePreviousGame()"
+    >
+      Continue
+    </button>
+  </div>
+
+  <footer>v{{appVersion}}</footer>
 </ion-content>

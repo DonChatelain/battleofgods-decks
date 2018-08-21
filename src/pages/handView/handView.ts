@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, MenuController, Events } from 'ionic-angular';
+import { NavParams, MenuController, Events } from 'ionic-angular';
 
 const STARTING_CARD_COUNT = 6;
 
@@ -10,18 +10,34 @@ const STARTING_CARD_COUNT = 6;
 export class HandView {
   deck: Array<any>;
   hand: Array<any>;
-  discards: Array<any>;
+  startingCardCount: number;
+  characterData: Array<any>;
 
   constructor(
-    public navCtrl: NavController,
     public navParams: NavParams,
     public menuCtrl: MenuController,
     public events: Events,
   ) {
     const { selectedTeam } = navParams.data;
-    this.deck = this._generateDeck(selectedTeam.cards);
-    this.hand = this.deck.splice(-STARTING_CARD_COUNT);
-    this.discards = [];
+    this.initData();
+
+    if (selectedTeam.isPreviousData) {
+      const { deck, hand, discards, characterData } = selectedTeam;
+      this.deck = deck;
+      this.hand = hand;
+      this.characterData = characterData;
+      discards.forEach(card => {
+        this.events.publish('discards:added', card);
+      })
+    } else if (selectedTeam != null) {
+      this.deck = this._generateDeck(selectedTeam.cards);
+      this.hand = [];
+      this.characterData = selectedTeam.characters;
+    }
+  }
+
+  initData() {
+    this.startingCardCount = STARTING_CARD_COUNT;
     this.events.subscribe('discards:removed', (cardData) => {
       this.hand.unshift(cardData);
     })
@@ -40,14 +56,27 @@ export class HandView {
     }
   }
 
-  public returnDiscard(index: number) {
-    if (this.discards[index] != null) {
-      this.hand.unshift(...this.discards.splice(index, 1));
+  public showDiscardPile() {
+    this.menuCtrl.toggle('menu-discard-pile');
+  }
+
+  public getMinorCount(char) {
+    if (char.minorCount != null) {
+      return `(${char.minorCount})`
     }
   }
 
-  public showDiscardPile() {
-    this.menuCtrl.toggle('menu-discard-pile');
+  saveGame() {
+    const dataToSave = {
+      deck: this.deck,
+      hand: this.hand,
+      characterData: this.characterData,
+    };
+    this.events.publish('data:saved', dataToSave);
+  }
+
+  quitToEntry() {
+    this.saveGame();
   }
 
   ionViewDidLoad() {
