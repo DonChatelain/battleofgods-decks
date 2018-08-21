@@ -1,5 +1,26 @@
 
 button.faction-btn {
+  color: white;
+
+  * {
+    border-bottom: none !important;
+    font-size: 3rem;
+    text-indent: 10px;
+    font-weight: bold;
+  }
+
+  &.Egyptian {
+    background-color: map-get($colors, egyptian);
+  }
+  &.Norse {
+    background-color: map-get($colors, norse);
+  }
+  &.Greek {
+    background-color: map-get($colors, greek);
+  }
+  &.Mesoamerican {
+    background-color: map-get($colors, mesoamerican);
+  }
 
   .item-inner { 
     // 4 faction selection divs - iOS nav bar - iOS status bar (SE)

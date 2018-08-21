@@ -1,4 +1,49 @@
 .team-btn {
+  color: white;
+  font-weight: bold;
+
+  * {
+    border-bottom: none !important;
+    font-weight: bold !important;
+    white-space: normal;
+  }
+
+  &.Egyptian {
+    background-color: map-get($colors, egyptian);
+    &:first-child {
+      background-color: map-get($colors, egyptian-light);
+    }
+    &:last-child {
+      background-color: map-get($colors, egyptian-dark);
+    }
+  }
+  &.Norse {
+    background-color: map-get($colors, norse);
+    &:first-child {
+      background-color: map-get($colors, norse-light);
+    }
+    &:last-child {
+      background-color: map-get($colors, norse-dark);
+    }
+  }
+  &.Greek {
+    background-color: map-get($colors, greek);
+    &:first-child {
+      background-color: map-get($colors, greek-light);
+    }
+    &:last-child {
+      background-color: map-get($colors, greek-dark);
+    }
+  }
+  &.Mesoamerican {
+    background-color: map-get($colors, mesoamerican);
+    &:first-child {
+      background-color: map-get($colors, mesoamerican-light);
+    }
+    &:last-child {
+      background-color: map-get($colors, mesoamerican-dark);
+    }
+  }
 
   .item-inner {
     // 4 faction selection divs - iOS nav bar - iOS status bar (SE)

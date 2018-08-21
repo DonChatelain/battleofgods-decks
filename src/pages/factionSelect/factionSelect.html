@@ -1,11 +1,14 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar >
       <ion-title>Select Your Gods</ion-title>
     </ion-navbar>
   </ion-header>
   
   <ion-content>
-    <button class="faction-btn" ion-item *ngFor="let factionName of factionSelections"
+    <button
+      class="faction-btn"
+      ion-item *ngFor="let factionName of factionSelections"
+      [ngClass]="assignColorClass(factionName)"
       (click)="chooseFaction($event, factionName)"
     >
       <h1>{{factionName}}</h1>

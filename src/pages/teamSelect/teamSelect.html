@@ -5,7 +5,11 @@
   </ion-header>
   
   <ion-content>
-    <button class="team-btn" ion-item *ngFor="let team of teamSelections"
+    <button
+      class="team-btn"
+      ion-item
+      *ngFor="let team of teamSelections"
+      [ngClass]="assignColorClass(team.faction)"
       (click)="chooseTeam($event, team)"
     >
       <h1>{{team.name}}</h1>

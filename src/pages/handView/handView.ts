@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, MenuController, Events } from 'ionic-angular';
-import { Observable } from 'rxjs/Observable';
 
 const STARTING_CARD_COUNT = 6;
 
@@ -56,6 +55,16 @@ export class HandView {
   }
   ionViewWillLeave() {
     this.menuCtrl.enable(false);
+  }
+
+  public assignColorClass(cardName) {
+    const cc = {};
+    if (cardName === 'Combat' || cardName === 'Basic') {
+      cc['basic-card'] = true;
+    } else {
+      cc['special-card'] = true;
+    }
+    return cc;
   }
 
   private _generateDeck(cards: Array<any>): Array<any> {

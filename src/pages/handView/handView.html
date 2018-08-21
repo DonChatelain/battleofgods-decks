@@ -28,7 +28,12 @@
     No Cards in Hand
   </div>
 
-  <ion-card *ngFor="let card of hand; let i = index" (click)="playCard(i)" class="card">
+  <ion-card
+    *ngFor="let card of hand; let i = index" 
+    (click)="playCard(i)"
+    class="card"
+    [ngClass]="assignColorClass(card.name)"
+  >
     <ion-card-header>
       {{card.name}}
     </ion-card-header>

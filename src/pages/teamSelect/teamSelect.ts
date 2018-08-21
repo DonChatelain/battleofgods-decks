@@ -34,4 +34,10 @@ export class TeamSelectPage {
       selectedTeam: this.selectedTeam,
     });
   }
+
+  assignColorClass(faction) {
+    const cc = {};
+    cc[faction] = true;
+    return cc;
+  }
 }

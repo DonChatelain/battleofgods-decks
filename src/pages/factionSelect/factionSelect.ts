@@ -16,11 +16,17 @@ export class FactionSelectPage {
     public navParams: NavParams,
   ) {
     this.factionSelections = [
-      'Egyptian',
       'Greek',
+      'Norse',
+      'Egyptian',
       'Mesoamerican',
-      'Norse'
     ];
+  }
+
+  assignColorClass(factionName) {
+    const cc = {};
+    cc[factionName] = true;
+    return cc;
   }
 
   chooseFaction(event, factionName) {
