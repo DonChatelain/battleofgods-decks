@@ -1,14 +1,14 @@
 {
   "name": "bog_deck_manager",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
-  "private": true,
+  "author": "Don Chatelain",
+  "homepage": "https://battleofgods.now.sh",
   "scripts": {
-    "start": "ionic-app-scripts serve",
+    "start": "ionic-app-scripts serve --platform ios",
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
-    "lint": "ionic-app-scripts lint"
+    "lint": "ionic-app-scripts lint",
+    "serve:local": "ionic-app-scripts serve -c --platform ios"
   },
   "dependencies": {
     "@angular/animations": "5.2.11",
@@ -24,6 +24,7 @@
     "@ionic-native/splash-screen": "~4.11.0",
     "@ionic-native/status-bar": "~4.11.0",
     "@ionic/storage": "2.1.3",
+    "axios": "^0.18.0",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
     "rxjs": "5.5.11",
@@ -34,5 +35,5 @@
     "@ionic/app-scripts": "3.1.11",
     "typescript": "~2.6.2"
   },
-  "description": "An Ionic project"
+  "description": "Card deck manager for Battle of Gods board game prototyping / playtesting"
 }

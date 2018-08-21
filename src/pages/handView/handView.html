@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Hand ({{hand.length}})</ion-title>
+    <ion-buttons end>
+      <button ion-button outline color="danger" (click)="showDiscardPile()" class="show-discards-btn">
+        Discards
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<!-- <discards-menu></discards-menu> -->
+  
+<ion-content>
+  <section class="hand-control">
+    <!-- <button ion-button color="light" class="filler">
+      Nothing
+    </button> -->
+    <button ion-button (click)="drawCard()" class="draw-btn">
+      Draw ({{deck.length}})
+    </button>
+    <!-- <button ion-button color="light" class="show-discards-btn" (click)="showDiscardPile()">
+      Discards
+    </button> -->
+  </section>
+
+  <div *ngIf="hand.length === 0" class="no-hand-info">
+    No Cards in Hand
+  </div>
+
+  <ion-card *ngFor="let card of hand; let i = index" (click)="playCard(i)" class="card">
+    <ion-card-header>
+      {{card.name}}
+    </ion-card-header>
+    <ion-card-content>
+      {{card.effect}}
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

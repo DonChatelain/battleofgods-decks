@@ -1,0 +1,13 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>Select Your Gods</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+    <button class="team-btn" ion-item *ngFor="let team of teamSelections"
+      (click)="chooseTeam($event, team)"
+    >
+      <h1>{{team.name}}</h1>
+    </button>
+  </ion-content>

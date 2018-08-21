@@ -1,0 +1,38 @@
+hand-view {
+
+  .show-discards-btn {
+    font-size: 1.2rem;
+    opacity: 0.5;
+  }
+
+  .hand-control {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+
+    .show-discards-btn, .filler {
+      width: 60px;
+      font-size: 1.2rem;
+    }
+
+    .draw-btn {
+      width: 100px;
+    }
+
+    > * {
+      height: 50px;
+    }
+  }
+
+  .card {
+    min-height: 100px;
+
+  }
+
+  .no-hand-info {
+    text-align: center;
+    margin-top: 50%;
+  }
+
+}

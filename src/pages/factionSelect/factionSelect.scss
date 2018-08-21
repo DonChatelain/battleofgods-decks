@@ -1,0 +1,8 @@
+
+button.faction-btn {
+
+  .item-inner { 
+    // 4 faction selection divs - iOS nav bar - iOS status bar (SE)
+    height: calc(25vh - (44px / 4) - 5px);
+  }
+}
