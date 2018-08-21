@@ -1,0 +1,40 @@
+page-entry {
+
+  button {
+    margin: 50% auto 0 auto !important;
+    display: block !important
+  }
+
+  h1 {
+    color: white;
+    white-space: normal;
+    width: 60%;
+    margin: 0 auto;
+    font-size: 8rem;
+    text-align: center;
+    line-height: 1;
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 82%;
+      top: 50%;
+      height: 2px;
+      border-bottom: 0.6px solid rgba(255, 255, 255, 0.397);
+    }
+
+    span {
+      font-weight: bold;
+      font-size: 2rem;
+
+      &:nth-child(3) {
+        font-size: 8rem;
+      }
+    }
+  }
+
+  .content {
+    background: linear-gradient(107deg,#c94b4b,#4b134f);
+  }
+}

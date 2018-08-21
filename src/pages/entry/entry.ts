@@ -8,13 +8,11 @@ import { FactionSelectPage } from '../factionSelect/factionSelect';
   templateUrl: 'entry.html',
 })
 export class EntryPage {
-  gameTitle: String;
 
   constructor(
     public navCtrl: NavController,
     public menuCtrl: MenuController,
   ) {
-    this.gameTitle = 'Tournament of Nyx';
     this.menuCtrl.enable(false);
   }
 
