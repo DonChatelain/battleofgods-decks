@@ -8,20 +8,12 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-
-<!-- <discards-menu></discards-menu> -->
   
 <ion-content>
   <section class="hand-control">
-    <!-- <button ion-button color="light" class="filler">
-      Nothing
-    </button> -->
     <button ion-button (click)="drawCard()" class="draw-btn">
       Draw ({{deck.length}})
     </button>
-    <!-- <button ion-button color="light" class="show-discards-btn" (click)="showDiscardPile()">
-      Discards
-    </button> -->
   </section>
 
   <div *ngIf="hand.length === 0" class="no-hand-info">
@@ -35,7 +27,8 @@
     [ngClass]="assignColorClass(card.name)"
   >
     <ion-card-header>
-      {{card.name}}
+      <span>{{card.name}}</span>
+      <span>{{card.atk}}/{{card.def}}</span>
     </ion-card-header>
     <ion-card-content>
       {{card.effect}}

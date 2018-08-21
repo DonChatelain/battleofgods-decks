@@ -3,15 +3,18 @@ import { Nav, Platform, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { EntryPage } from '../pages/entry/entry';
 import { TeamSelectPage } from '../pages/teamSelect/teamSelect';
+import { EntryPage } from '../pages/entry/entry';
+import { FactionSelectPage } from '../pages/factionSelect/factionSelect';
+
+import { Store } from '../services/Store';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = EntryPage;
+  rootPage: any = FactionSelectPage;
   pages: Array<{title: string, component: any}>;
   discards: Array<any>;
 
@@ -20,6 +23,7 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public events: Events,
+    public store: Store,
   ) {
     this.initializeApp();
     this.discards = [];

@@ -12,7 +12,11 @@ export class AbsoluteDrag {
     lowerThreshold: number;
     upperThreshold: number;
  
-    constructor(public element: ElementRef, public renderer: Renderer, public domCtrl: DomController) {
+    constructor(
+      public element: ElementRef,
+      public renderer: Renderer,
+      public domCtrl: DomController
+    ) {
  
     }
  

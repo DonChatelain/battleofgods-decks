@@ -11,7 +11,7 @@ import { FactionSelectPage } from '../pages/factionSelect/factionSelect';
 import { TeamSelectPage } from '../pages/teamSelect/teamSelect';
 import { HandView } from '../pages/handView/handView';
 
-import { Requester } from '../services/Requester';
+import { Store } from '../services/Store';
 import { AbsoluteDrag } from '../components/absoluteDrag/absoluteDrag';
 
 @NgModule({
@@ -38,7 +38,7 @@ import { AbsoluteDrag } from '../components/absoluteDrag/absoluteDrag';
   ],
   providers: [
     StatusBar,
-    Requester,
+    Store,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

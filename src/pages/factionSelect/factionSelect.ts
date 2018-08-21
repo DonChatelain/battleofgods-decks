@@ -1,7 +1,16 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
 
 import { TeamSelectPage } from '../teamSelect/teamSelect';
+import { Store } from '../../services/Store';
+
+const FACTIONS = [
+  'Greek',
+  'Norse',
+  'Egyptian',
+  'Mesoamerican',
+];
+const DEFAULT_FACTION = FACTIONS[0];
 
 @Component({
   selector: 'page-factionselect',
@@ -9,18 +18,14 @@ import { TeamSelectPage } from '../teamSelect/teamSelect';
 })
 export class FactionSelectPage {
   factionSelections: string[];
-  selectedFaction: string;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public events: Events,
+    public store: Store,
   ) {
-    this.factionSelections = [
-      'Greek',
-      'Norse',
-      'Egyptian',
-      'Mesoamerican',
-    ];
+    this.factionSelections = FACTIONS;
   }
 
   assignColorClass(factionName) {
@@ -29,11 +34,8 @@ export class FactionSelectPage {
     return cc;
   }
 
-  chooseFaction(event, factionName) {
-    // show characters of chosen faction
-    this.selectedFaction = factionName;
-    this.navCtrl.push(TeamSelectPage, {
-      faction: factionName,
-    });
+  chooseFaction(event, factionName: string) {
+    const teamSelections = this.store.getTeamsByFaction(factionName || DEFAULT_FACTION);
+    this.navCtrl.push(TeamSelectPage, { teamSelections });
   }
 }
