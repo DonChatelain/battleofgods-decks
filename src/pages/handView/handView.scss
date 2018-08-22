@@ -50,43 +50,6 @@ hand-view {
     }
   }
 
-  .card {
-    min-height: 100px;
-    position: relative;
-
-    .card-header {
-      position: relative;
-      display: flex;
-      justify-content: space-between;
-
-      span:last-child {
-        font-weight: bold;
-        letter-spacing: 4px;
-      }
-    }
-
-    &.basic-card:before {
-      content: '';
-      width: 4px;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0px;
-      background: map-get($colors, norse-light);
-      z-index: 0;
-    }
-    &.special-card:before {
-      content: '';
-      width: 4px;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0px;
-      background: map-get($colors, mesoamerican-light);
-      z-index: 0;
-    }
-  }
-
   .no-hand-info {
     text-align: center;
     margin-top: 50%;

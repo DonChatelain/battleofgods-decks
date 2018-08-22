@@ -38,6 +38,7 @@ page-entry {
 
       &:nth-child(3) {
         font-size: 8rem;
+        text-shadow: 0px 0px 8px #cccccc, 15px 15px 16px #00000059;
       }
     }
   }
@@ -52,6 +53,6 @@ page-entry {
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-    color: #b9b9b9;
+    color: #ffffff7a;
   }
 }

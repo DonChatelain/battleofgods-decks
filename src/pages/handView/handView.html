@@ -45,6 +45,7 @@
       <span>{{card.name}}</span>
       <span>{{card.atk == -1 ? '*' : card.atk}}/{{card.def == -1 ? '*' : card.def}}</span>
     </ion-card-header>
+    <p class="sub-header">{{card.owner}}</p>
     <ion-card-content>
       {{card.effect}}
     </ion-card-content>

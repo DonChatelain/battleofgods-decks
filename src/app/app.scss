@@ -26,3 +26,46 @@
   opacity: 0.5;
   font-size: 1.5rem;
 }
+
+.card {
+  min-height: 100px;
+  position: relative;
+
+  .card-header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 4px;
+
+    span:last-child {
+      font-weight: bold;
+      letter-spacing: 4px;
+    }
+  }
+
+  .sub-header {
+    opacity: 0.65;
+    padding-left: 16px; 
+  }
+
+  &.basic-card:before {
+    content: '';
+    width: 4px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0px;
+    background: map-get($colors, norse-light);
+    z-index: 0;
+  }
+  &.special-card:before {
+    content: '';
+    width: 4px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0px;
+    background: map-get($colors, mesoamerican-light);
+    z-index: 0;
+  }
+}

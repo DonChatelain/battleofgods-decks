@@ -13,8 +13,10 @@
 
     <ion-card *ngFor="let card of discards; let i = index" (click)="returnDiscard(i)" class="card discard">
       <ion-card-header>
-        {{card.name}}
+        <span>{{card.name}}</span>
+        <span>{{card.atk === -1 ? '*' : card.atk}}/{{card.def === -1 ? '*' : card.def}}</span>
       </ion-card-header>
+      <p class="sub-header">{{card.owner}}</p>
       <ion-card-content>
         {{card.effect}}
       </ion-card-content>

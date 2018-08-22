@@ -1,6 +1,6 @@
 {
-  "name": "Deck Manager",
-  "short_name": "Deck Manager",
+  "name": "Tournament of Nyx: Decks",
+  "short_name": "Nyx",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{
