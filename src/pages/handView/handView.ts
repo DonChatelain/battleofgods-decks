@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavParams, MenuController, Events } from 'ionic-angular';
+import { NavParams, MenuController, Events, AlertController } from 'ionic-angular';
 
 const STARTING_CARD_COUNT = 6;
+const MAX_CARD_COUNT = 10;
 
 @Component({
   selector: 'hand-view',
@@ -17,6 +18,7 @@ export class HandView {
     public navParams: NavParams,
     public menuCtrl: MenuController,
     public events: Events,
+    public alertCtrl: AlertController,
   ) {
     const { selectedTeam } = navParams.data;
     this.initData();
@@ -44,7 +46,10 @@ export class HandView {
   }
 
   public drawCard() {
-    if (this.deck.length > 0) {
+    if (this.hand.length >= MAX_CARD_COUNT){
+      this.presentAlert();
+    }
+    else if (this.deck.length > 0) {
       this.hand.unshift(this.deck.pop());
     }
   }
@@ -73,6 +78,15 @@ export class HandView {
       characterData: this.characterData,
     };
     this.events.publish('data:saved', dataToSave);
+  }
+
+  presentAlert() {
+    const alert = this.alertCtrl.create({
+      title: 'Max Card Limit Reached',
+      subTitle: 'You may not have more than 10 cards in your hand. Please discard a card to draw another.',
+      buttons: ['Dismiss']
+    });
+    alert.present();
   }
 
   quitToEntry() {

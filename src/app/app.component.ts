@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, Events, NavController } from 'ionic-angular';
+import { Nav, Platform, Events, LoadingController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -18,6 +18,7 @@ export class MyApp {
   rootPage: any = EntryPage;
   pages: Array<{title: string, component: any}>;
   discards: Array<any>;
+  loadingOverlay: any;
 
   constructor(
     public platform: Platform,
@@ -26,8 +27,10 @@ export class MyApp {
     public events: Events,
     public store: Store,
     public storage: Storage,
+    public loadingCtrl: LoadingController,
   ) {
     this.initializeApp();
+    this.initLoader();
     this.discards = [];
     this.events.subscribe('discards:added', (cardData) => {
       this.discards.unshift(cardData);
@@ -42,6 +45,19 @@ export class MyApp {
           .catch(err => console.error('storage error:', err));
       }
     })
+    this.events.subscribe('data:ready', (ready) => {
+      if (ready) {
+        this.loadingOverlay.dismiss();
+      }
+    })
+  }
+
+  initLoader() {
+    this.loadingOverlay = this.loadingCtrl.create({
+      spinner: 'crescent',
+      cssClass: 'my-loading-overlay',
+    });
+    this.loadingOverlay.present();
   }
 
   returnDiscard(index: number) {

@@ -2,10 +2,7 @@
 
 
 ### HIGH Priority 1.0.0
-- 1: display atk/def in discards
 - 4: loader until data retrieved / app ready
-- 1: cap cards in hand (10)
-- 1: display card owner on card (sub header?)
 
 ## Version 1.1.0 
 - 8: animation for cards + swiping to play, draw, etc

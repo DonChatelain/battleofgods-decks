@@ -69,3 +69,22 @@
     z-index: 0;
   }
 }
+
+.my-loading-overlay {
+
+  svg {
+    circle {
+      stroke: #c5daf9 !important;
+    }
+  }
+
+  .loading-wrapper {
+    background: #692437;
+    padding: 50px 50px;
+
+    ion-spinner {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
