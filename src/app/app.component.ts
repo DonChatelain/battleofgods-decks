@@ -17,7 +17,6 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = EntryPage;
   pages: Array<{title: string, component: any}>;
-  discards: Array<any>;
   loadingOverlay: any;
 
   constructor(
@@ -31,14 +30,13 @@ export class MyApp {
   ) {
     this.initializeApp();
     this.initLoader();
-    this.discards = [];
-    this.events.subscribe('discards:added', (cardData) => {
-      this.discards.unshift(cardData);
-    });
     this.events.subscribe('data:saved', (saveData) => {
-      if (saveData) {
-        saveData.discards = this.discards;
-        this.discards = [];
+      if (saveData.isDead) {
+        this.storage
+          .clear()
+          .then(() => this.nav.goToRoot({ animate: true, direction: 'back' }))
+          .catch(err => console.error('storage clear:', err));
+      } else {
         this.storage
           .set('prevData', saveData)
           .then(() => this.nav.goToRoot({ animate: true, direction: 'back' }))
@@ -58,13 +56,6 @@ export class MyApp {
       cssClass: 'my-loading-overlay',
     });
     this.loadingOverlay.present();
-  }
-
-  returnDiscard(index: number) {
-    if (this.discards[index]) {
-      this.events.publish('discards:removed', this.discards[index]);
-      this.discards.splice(index, 1);
-    }
   }
 
   initializeApp() {

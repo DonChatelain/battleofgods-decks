@@ -29,10 +29,16 @@
     </button>
   </section>
 
-  <div *ngIf="hand.length === 0" class="no-hand-info">
+  <div *ngIf="hand.length === 0 && !isDead" class="no-hand-info">
     No Cards in Hand
     <br/>
     Draw {{startingCardCount}} Cards To Get Started
+  </div>
+
+  <div *ngIf="isDead" class="no-hand-info">
+    You Dead
+    <br/>
+    Sucks to be you, nerd
   </div>
 
   <ion-card
@@ -52,3 +58,32 @@
   </ion-card>
 
 </ion-content>
+
+<!--  Discards Side Menu   -->
+<ion-menu id="menu-discard-pile" type="overlay" side="right" [content]="discardsContent">
+  <ion-content>
+    <ion-title class="discards-title">
+        Discards ({{discards.length}})
+    </ion-title>
+
+    <div
+      *ngIf="discards.length === 0"
+      class="no-discards-info"
+    >
+      No cards in Discard Pile
+    </div>
+
+    <ion-card *ngFor="let card of discards; let i = index" (click)="returnDiscard(i)" class="card discard">
+      <ion-card-header>
+        <span>{{card.name}}</span>
+        <span>{{card.atk === -1 ? '*' : card.atk}}/{{card.def === -1 ? '*' : card.def}}</span>
+      </ion-card-header>
+      <p class="sub-header">{{card.owner}}</p>
+      <ion-card-content>
+        {{card.effect}}
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+</ion-menu>
+
+<ion-nav #discardsContent swipeBackEnabled="false"></ion-nav>

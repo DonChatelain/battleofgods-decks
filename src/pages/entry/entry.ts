@@ -6,7 +6,7 @@ import { Storage } from '@ionic/storage';
 import { FactionSelectPage } from '../factionSelect/factionSelect';
 import { HandView } from '../handView/handView';
 
-const APP_VERSION = '1.0.0';
+const APP_VERSION = '1.0.1';
 
 @Component({
   selector: 'page-entry',

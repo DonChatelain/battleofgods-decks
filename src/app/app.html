@@ -1,28 +1,3 @@
-<ion-menu id="menu-discard-pile" type="overlay" side="right" [content]="discardsContent">
-  <ion-content>
-    <ion-title class="discards-title">
-        Discards ({{discards.length}})
-    </ion-title>
-
-    <div
-      *ngIf="discards.length === 0"
-      class="no-discards-info"
-    >
-      No cards in Discard Pile
-    </div>
-
-    <ion-card *ngFor="let card of discards; let i = index" (click)="returnDiscard(i)" class="card discard">
-      <ion-card-header>
-        <span>{{card.name}}</span>
-        <span>{{card.atk === -1 ? '*' : card.atk}}/{{card.def === -1 ? '*' : card.def}}</span>
-      </ion-card-header>
-      <p class="sub-header">{{card.owner}}</p>
-      <ion-card-content>
-        {{card.effect}}
-      </ion-card-content>
-    </ion-card>
-  </ion-content>
-</ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #discardsContent swipeBackEnabled="false"></ion-nav>
+<ion-nav [root]="rootPage" swipeBackEnabled="false"></ion-nav>
