@@ -1,69 +1,118 @@
-import { Directive, Input, ElementRef, Renderer } from '@angular/core';
+import { Directive, Output, ElementRef, Renderer, EventEmitter } from '@angular/core';
 import { DomController } from 'ionic-angular';
  
 @Directive({
-  selector: '[absolute-drag]'
+  selector: '[slidable-card]'
 })
 export class AbsoluteDrag {
- 
-    @Input('startLeft') startLeft: any;
-    @Input('startTop') startTop: any;
-    @Input('pan-type') panType: string; 
-    lowerThreshold: number;
-    upperThreshold: number;
+  @Output() onExit: EventEmitter<any> = new EventEmitter();
+
+  isDragging: boolean = false;
+  threshold: number = 120;
  
     constructor(
       public element: ElementRef,
       public renderer: Renderer,
       public domCtrl: DomController
     ) {
- 
+      
     }
- 
+ /**
+  * Needs major refactor!
+  */
     ngAfterViewInit() {
-
-        // this.renderer.setElementStyle(this.element.nativeElement, 'position', 'absolute');
-        // this.renderer.setElementStyle(this.element.nativeElement, 'left', this.startLeft + '%'); // % 
-        // this.renderer.setElementStyle(this.element.nativeElement, 'top', this.startTop + 'px');
-
-        const direction = this.panType === 'vertical' ? window['Hammer'].DIRECTION_VERTICAL : window['Hammer'].DIRECTION_HORIZONTAL;
-        this.lowerThreshold = this.panType === 'vertical' ? 44 : 0;
-        this.upperThreshold = this.panType === 'vertical' ? 120 : 300;
+        const direction = window['Hammer'].DIRECTION_HORIZONTAL;
 
         let hammer = new window['Hammer'](this.element.nativeElement);
-        hammer.get('pan').set({ direction });
+        hammer.get('pan').set({ direction, threshold: 0, pointers: 0 });
+
+        this.style('transition', 'min-height 200ms ease, opacity 200ms ease, margin 200ms ease, transform 200ms ease');
+
+        hammer.on('press', (ev) => {
+          this.isDragging = true;
+          this.style('transform', 'scale(1.1)')
+        })
+
+        hammer.on('pressup', (ev) => {
+          this.isDragging = false;
+          this.style('transform', 'scale(1)')
+        })
  
         hammer.on('panmove', (ev) => {
+          ev.preventDefault(); // prevent page scrolling where we can
           this.handlePan(ev);
         });
         hammer.on('panend', (ev) => {
-          console.log('off pan')
-          this.resetDraggable(ev);
+          this.handlePanEnd(ev);
         });
     }
 
-    resetDraggable(ev) {
-      this.renderer.setElementStyle(this.element.nativeElement, 'left', 50 + '%'); // % 
-      this.renderer.setElementStyle(this.element.nativeElement, 'top', 55 + 'px');
-    }
- 
     handlePan(ev){
-        const topThreshold = 44;
-        const bottomThreshold = 120;
-        // let newLeft = ev.center.x;
-        let newTop = ev.center.y - 20;
+      if (!this.isDragging || ev.deltaX < 0) return; // no swipe left
 
- 
+      const change = ev.deltaX;
+      this.domCtrl.write(() => {
+          this.style('transform', 'scale(1.1)')
+          this.style('left', `${change}px`)
+      });
+      if (change > this.threshold) {
         this.domCtrl.write(() => {
-            // this.renderer.setElementStyle(this.element.nativeElement, 'left', newLeft + 'px');
-            if (newTop > topThreshold && newTop < bottomThreshold) {
-              this.renderer.setElementStyle(this.element.nativeElement, 'top', newTop + 'px');
-            }
-            else if (newTop > bottomThreshold) {
-              console.log('draw card')
-            }
+          this.style('opacity', `${0.6 - 0.005 * (change - this.threshold)}`);
         });
- 
+      } else {
+        this.domCtrl.write(() => {
+          this.style('opacity', `${ 1 }`);
+        });
+      }
     }
- 
+
+    handlePanEnd(ev) {
+      if (!this.isDragging) return;
+      this.isDragging = false;
+
+      if (ev.deltaX < this.threshold) {
+
+        let start = null;
+        const step = (timestamp) => {
+          if (!start) start = timestamp;
+          var progress = timestamp - start;
+          this.domCtrl.write(() => {
+            this.style('transform', 'scale(1)');
+            this.style('left', `${ Math.max(ev.deltaX - progress, 0) }px`)
+          });
+          if (progress < 150) {
+            window.requestAnimationFrame(step);
+          }
+        }
+        window.requestAnimationFrame(step);
+      }
+      else {
+        let start = null;
+        const step = (timestamp) => {
+          if (!start) start = timestamp;
+          var progress = timestamp - start;
+          this.domCtrl.write(() => {
+            this.style('transform', 'scale(1.1');
+            this.style('left', `${ ev.deltaX + Math.min(progress, 200) }px`)
+          });
+          if (progress < 400) {
+            window.requestAnimationFrame(step);
+            if (progress > 200) {
+              this.domCtrl.write(() => {
+                this.style('min-height', '0');
+                this.style('height', '0px');
+                this.style('margin', '0');
+              });
+            }
+          } else {
+            this.onExit.emit();
+          }
+        }
+        window.requestAnimationFrame(step);
+      }
+    }
+
+    style(key: string, value: string) {
+      this.renderer.setElementStyle(this.element.nativeElement, key, value);
+    }
 }

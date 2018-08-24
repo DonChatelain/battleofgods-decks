@@ -1,5 +1,5 @@
 # TODO
-
+ENV VAR FOR API KEY!!!!!
 
 ## Current Version -  1.0.1
 
@@ -17,3 +17,4 @@
 - 2: refactoring pages / components / renaming, etc
 - pull card into it's own reusable template
 - BUG: when drawing last last card using spcardfn like Divine Sight or Valkyrie Tower - 
+

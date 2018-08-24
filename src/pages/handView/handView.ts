@@ -24,7 +24,7 @@ export class HandView {
     public menuCtrl: MenuController,
     public events: Events,
     public alertCtrl: AlertController,
-    public popoverCtrl: PopoverController
+    public popoverCtrl: PopoverController,
   ) {
 
     const { selectedTeam } = navParams.data;

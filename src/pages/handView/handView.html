@@ -43,9 +43,10 @@
 
   <ion-card
     *ngFor="let card of hand; let i = index" 
-    (click)="playCard(i)"
     class="card"
     [ngClass]="assignColorClass(card.name)"
+    slidable-card
+    (onExit)="playCard(i)"
   >
     <ion-card-header>
       <span>{{card.name}}</span>
@@ -80,7 +81,11 @@
       You're dead, what do you want?
     </div>
 
-    <ion-card *ngFor="let card of discards; let i = index" (click)="returnDiscard(i)" class="card discard">
+    <ion-card
+      *ngFor="let card of discards; let i = index"
+      (click)="returnDiscard(i)"
+      class="card discard"
+    >
       <ion-card-header>
         <span>{{card.name}}</span>
         <span>{{card.atk === -1 ? '*' : card.atk}}/{{card.def === -1 ? '*' : card.def}}</span>
