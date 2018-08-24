@@ -5,7 +5,6 @@
 
 
 ## Next Version -  1.1.0 
-- when restoring discards- order is reversed (only happens when you close and reopen app) (VERIFY FIXED)
 - 8: animation for cards + swiping to play, draw, etc
 - verify Service worker is doing his fucking job
 - set up auto incrementing sem-ver (pulled by App)
