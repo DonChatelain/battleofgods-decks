@@ -81,7 +81,8 @@ export class HandView {
       );
     }
 
-    return this.hand.unshift(this.deck.pop());
+    const drawn = this.deck.pop();
+    return drawn ? this.hand.unshift(drawn) : null;
   }
 
   public shuffleDiscardsIntoDeck() {

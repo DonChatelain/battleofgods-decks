@@ -3,6 +3,7 @@
 
 ## Current Version -  1.0.1
 
+
 ## Next Version -  1.1.0 
 - when restoring discards- order is reversed (only happens when you close and reopen app) (VERIFY FIXED)
 - 8: animation for cards + swiping to play, draw, etc
@@ -16,3 +17,4 @@
 - 1: research any helpful native APIs
 - 2: refactoring pages / components / renaming, etc
 - pull card into it's own reusable template
+- BUG: when drawing last last card using spcardfn like Divine Sight or Valkyrie Tower - 

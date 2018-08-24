@@ -67,10 +67,17 @@
     </ion-title>
 
     <div
-      *ngIf="discards.length === 0"
+      *ngIf="discards.length === 0 && !isDead"
       class="no-discards-info"
     >
       No cards in Discard Pile
+    </div>
+
+    <div
+      *ngIf="isDead"
+      class="no-discards-info"
+    >
+      You're dead, what do you want?
     </div>
 
     <ion-card *ngFor="let card of discards; let i = index" (click)="returnDiscard(i)" class="card discard">
