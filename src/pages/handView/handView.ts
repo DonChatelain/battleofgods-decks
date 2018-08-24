@@ -4,7 +4,7 @@ import { NavParams, MenuController, Events, AlertController, PopoverController }
 import { SpCardFnPage } from '../spCardFn/spCardFn';
 
 const STARTING_CARD_COUNT = 6;
-const MAX_CARD_COUNT = 100;
+const MAX_CARD_COUNT = 10;
 
 @Component({
   selector: 'hand-view',
