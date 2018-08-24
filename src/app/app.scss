@@ -28,8 +28,10 @@
 }
 
 .card {
+  text-align: left;
   min-height: 100px;
   position: relative;
+  box-sizing: border-box;
 
   .card-header {
     position: relative;
@@ -42,7 +44,7 @@
       overflow-x: hidden;
       max-width: 80%;
     }
-    
+
     span:last-child {
       font-weight: bold;
       letter-spacing: 4px;

@@ -1,0 +1,38 @@
+<!-- <ion-header>
+  <ion-navbar hideBackButton>
+    <ion-title></ion-title>
+  </ion-navbar>
+</ion-header> -->
+
+<ion-content>
+  <h1>You Have Played <br/><span>{{cardName}}</span></h1>
+  <p>{{details}}</p>
+
+  <button
+    full
+    ion-button
+    [disabled]="!isFinished"
+    (click)="done()"
+  >
+    {{buttonText || Done}}
+  </button>
+
+  <ion-list>
+    <ion-card
+      *ngFor="let card of selectableCards; let i = index" 
+      (click)="selectCard(i)"
+      class="card"
+      [ngClass]="getSelectedClass(i)"
+    >
+      <ion-card-header>
+        <span>{{card.name}}</span>
+        <span>{{card.atk == -1 ? '*' : card.atk}}/{{card.def == -1 ? '*' : card.def}}</span>
+      </ion-card-header>
+      <p class="sub-header">{{card.owner || 'Any'}}</p>
+      <ion-card-content>
+        {{card.effect}}
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+</ion-content>

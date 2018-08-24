@@ -11,6 +11,7 @@ import { EntryPage } from '../pages/entry/entry';
 import { FactionSelectPage } from '../pages/factionSelect/factionSelect';
 import { TeamSelectPage } from '../pages/teamSelect/teamSelect';
 import { HandView } from '../pages/handView/handView';
+import { SpCardFnPage } from '../pages/spCardFn/spCardFn';
 
 import { Store } from '../services/Store';
 import { AbsoluteDrag } from '../components/absoluteDrag/absoluteDrag';
@@ -23,6 +24,7 @@ import { AbsoluteDrag } from '../components/absoluteDrag/absoluteDrag';
     TeamSelectPage,
     HandView,
     AbsoluteDrag,
+    SpCardFnPage,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,7 @@ import { AbsoluteDrag } from '../components/absoluteDrag/absoluteDrag';
     FactionSelectPage,
     TeamSelectPage,
     HandView,
+    SpCardFnPage,
   ],
   providers: [
     StatusBar,

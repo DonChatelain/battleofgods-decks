@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavParams, MenuController, Events, AlertController } from 'ionic-angular';
+import { NavParams, MenuController, Events, AlertController, PopoverController } from 'ionic-angular';
+
+import { SpCardFnPage } from '../spCardFn/spCardFn';
 
 const STARTING_CARD_COUNT = 6;
 const MAX_CARD_COUNT = 100;
@@ -22,6 +24,7 @@ export class HandView {
     public menuCtrl: MenuController,
     public events: Events,
     public alertCtrl: AlertController,
+    public popoverCtrl: PopoverController
   ) {
 
     const { selectedTeam } = navParams.data;
@@ -89,6 +92,7 @@ export class HandView {
   public playCard(index: number) {
     const card = this.hand[index];
     if (card != null) {
+      this.checkForSpCardFn(card.name);
       this.discards.unshift(card);
       this.hand.splice(index, 1)
     }
@@ -100,6 +104,55 @@ export class HandView {
       this.hand.unshift(card);
       this.discards.splice(index, 1)
     }
+  }
+
+  checkForSpCardFn(cardName) {
+    const fnData: any = { cardName };
+
+    switch (cardName) {
+      case 'Divine Sight':
+        fnData.details = 'Look through your draw pile and choose a card to place into your hand. Your draw pile will be reshuffled'
+        fnData.selectableCards = this.deck.splice(0);
+        fnData.callback = (chosenCard, otherCards) => {
+          this.hand.unshift(chosenCard);
+          this.deck = this._shuffle(this.deck.concat(otherCards));
+        };
+        break;
+      case 'Shapeshift':
+        fnData.details = 'Look at an opponent\'s hand and steal a basic card and put it into your hand. From now on, this card may be used by Loki or Fenrir. For the sake of this app, just write down the card values and have your opponent discard it from his or her hand'
+        fnData.isFinished = true;
+        fnData.buttonText = 'OK';
+        break;
+      case 'Harvest Moon':
+        fnData.details = 'Search through your discard pile and choose one card to be placed into your hand. '
+        fnData.isFinished = true;
+        fnData.buttonText = 'OK';
+        break;
+      case 'Valkyrie Tower':
+        fnData.details = 'Look at the top 5 cards in your drawpile and place 1 card into your hand. Your draw pile will be reshuffled';
+        fnData.selectableCards = this.deck.splice(-5);
+        fnData.callback = (chosenCard, otherCards: Array<any>) => {
+          this.hand.unshift(chosenCard);
+          this.deck = this._shuffle(this.deck.concat(otherCards));
+        };
+        break;
+      case 'Animal Sacrifice':
+        fnData.details = 'Draw 4 cards, place 1 into your hand. The other 3 cards will be returned on top of your drawpile in their current order';
+        fnData.selectableCards = this.deck.splice(-4);
+        fnData.callback = (chosenCard, otherCards: Array<any>) => {
+          this.hand.unshift(chosenCard);
+          this.deck = this.deck.concat(otherCards.reverse());
+        };
+        break;
+      default: return;
+    }
+
+    const popover = this.popoverCtrl.create(
+      SpCardFnPage,
+      fnData,
+      { enableBackdropDismiss: false, cssClass: 'sp-card-fn' }
+    );
+    return popover.present();
   }
 
   public showDiscardPile() {
