@@ -58,4 +58,14 @@ hand-view {
     font-size: 1.8rem;
   }
 
+  .help-display {
+    padding: 3px 20px;
+    font-size: 1.2rem;
+    text-align: center;
+    
+    span {
+      font-weight: bold;
+    }
+  }
+
 }

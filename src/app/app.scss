@@ -28,8 +28,8 @@
 }
 
 .card {
+  transition: height 500ms ease, margin 200ms ease, transform 200ms ease;
   text-align: left;
-  min-height: 100px;
   position: relative;
   box-sizing: border-box;
 

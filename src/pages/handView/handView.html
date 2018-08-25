@@ -17,6 +17,10 @@
   
 <ion-content>
   <section class="hand-control">
+    <!-- Help button -->
+    <!-- <div class="show-help">
+      Help
+    </div> -->
     <!--  characters info  -->
     <div class="char-info">
       <p *ngFor="let char of characterData">
@@ -29,10 +33,14 @@
     </button>
   </section>
 
+  <div class="help-display">
+    <span>Play Card:</span> {{displayHelp('right')}}
+  </div>
+
   <div *ngIf="hand.length === 0 && !isDead" class="no-hand-info">
     No Cards in Hand
     <br/>
-    Draw {{startingCardCount}} Cards To Get Started
+    <span *ngIf="!hasDrawnAtLeastOnce">Draw {{startingCardCount}} Cards To Get Started</span>
   </div>
 
   <div *ngIf="isDead" class="no-hand-info">
@@ -45,7 +53,7 @@
     *ngFor="let card of hand; let i = index" 
     class="card"
     [ngClass]="assignColorClass(card.name)"
-    slidable-card
+    [slidable-card]="'right'"
     (onExit)="playCard(i)"
   >
     <ion-card-header>
@@ -67,6 +75,10 @@
         Discards ({{discards.length}})
     </ion-title>
 
+    <div class="help-display">
+      <span>Return Card to Hand:</span> {{displayHelp('left')}}
+    </div>
+
     <div
       *ngIf="discards.length === 0 && !isDead"
       class="no-discards-info"
@@ -83,8 +95,9 @@
 
     <ion-card
       *ngFor="let card of discards; let i = index"
-      (click)="returnDiscard(i)"
       class="card discard"
+      [slidable-card]="'left'"
+      (onExit)="returnDiscard(i)"
     >
       <ion-card-header>
         <span>{{card.name}}</span>

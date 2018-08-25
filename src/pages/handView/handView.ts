@@ -16,6 +16,7 @@ export class HandView {
   discards: Array<any> = [];
   startingCardCount: number = STARTING_CARD_COUNT;
   characterData: Array<any> = [];
+  hasDrawnAtLeastOnce: boolean = false;
   hasRestoredDeck: boolean = false;
   isDead: boolean = false;
 
@@ -44,6 +45,8 @@ export class HandView {
   // TODO: separate logic into methods
   public drawCard() {
     if (this.isDead) return;
+
+    if (!this.hasDrawnAtLeastOnce) this.hasDrawnAtLeastOnce = true;
 
     if (this.hand.length >= MAX_CARD_COUNT){
       return this.presentAlert(
@@ -175,6 +178,11 @@ export class HandView {
       isDead: this.isDead,
     };
     this.events.publish('data:saved', dataToSave);
+  }
+
+  displayHelp(direction) {
+    const helpText = `Press and hold card, then swipe ${direction}`;
+    return helpText;
   }
 
   presentAlert(title, subTitle) {
