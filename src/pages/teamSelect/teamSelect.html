@@ -11,6 +11,7 @@
       *ngFor="let team of teamSelections"
       [ngClass]="assignColorClass(team.faction)"
       (click)="chooseTeam($event, team)"
+      [style.background-image]="getTeamBackground(team)"
     >
       <h1>{{team.name}}</h1>
     </button>

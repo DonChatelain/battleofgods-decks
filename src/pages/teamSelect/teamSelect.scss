@@ -1,6 +1,14 @@
+$overlayOpacity: 0.5;
+
 .team-btn {
   color: white;
   font-weight: bold;
+  background-position: 30% 30%;
+  background-repeat: no-repeat;
+
+  .label {
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+  }
 
   * {
     border-bottom: none !important;
@@ -9,40 +17,16 @@
   }
 
   &.Egyptian {
-    background-color: map-get($colors, egyptian);
-    &:first-child {
-      background-color: map-get($colors, egyptian-light);
-    }
-    &:last-child {
-      background-color: map-get($colors, egyptian-dark);
-    }
+    box-shadow:inset 0 0 0 500px rgba(map-get($colors, egyptian), $overlayOpacity);
   }
   &.Norse {
-    background-color: map-get($colors, norse);
-    &:first-child {
-      background-color: map-get($colors, norse-light);
-    }
-    &:last-child {
-      background-color: map-get($colors, norse-dark);
-    }
+    box-shadow:inset 0 0 0 500px rgba(map-get($colors, norse), $overlayOpacity);
   }
   &.Greek {
-    background-color: map-get($colors, greek);
-    &:first-child {
-      background-color: map-get($colors, greek-light);
-    }
-    &:last-child {
-      background-color: map-get($colors, greek-dark);
-    }
+    box-shadow:inset 0 0 0 500px rgba(map-get($colors, greek), $overlayOpacity);
   }
   &.Mesoamerican {
-    background-color: map-get($colors, mesoamerican);
-    &:first-child {
-      background-color: map-get($colors, mesoamerican-light);
-    }
-    &:last-child {
-      background-color: map-get($colors, mesoamerican-dark);
-    }
+    box-shadow:inset 0 0 0 500px rgba(map-get($colors, mesoamerican), $overlayOpacity);
   }
 
   .item-inner {

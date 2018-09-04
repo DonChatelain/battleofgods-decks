@@ -1,15 +1,17 @@
 # TODO
-ENV VAR FOR API KEY!!!!!
 
-## Current Version -  1.0.1
-
-
-## Next Version -  1.1.0 
-- verify Service worker is doing his fucking job
-- set up auto incrementing sem-ver (pulled by App)
+## Current Version -  1.0.2
+- character images from api (PRELOADED!!!)
+- add character images from internet (norse + meso)
+- /teams/alldata SORT SORT SORT Characters! figure something out
+- optimize service worker to truly cache
+- set up auto incrementing sem-ver (pulled by App + thus Entry)
 - splashscreen
-- desktop view
-- Save periodically ?
+- desktop view - ion-grid
+- Save periodically - timer OR on changes to deck & hand arrays
+
+## Next Version -  
+
 
 ### LOW Priority
 - 1: research any helpful native APIs

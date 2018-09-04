@@ -32,6 +32,12 @@ export class Store {
     return teamValues.filter(x => x.faction === faction);
   }
 
+  getAllPrimaryCharactersImages() {
+    return Object.keys(this.teamData).map(key => this.teamData[key]).map(team => {
+      return team.characters[0].image;
+    });
+  }
+
   fetch(endpoint: string) {
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', this.apiToken);
