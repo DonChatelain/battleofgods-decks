@@ -84,7 +84,8 @@ export class HandView {
       );
     }
 
-    const drawn = this.deck.pop();
+    const drawn = Object.assign({}, this.deck.pop());
+    drawn.id = Date.now();
     return drawn ? this.hand.unshift(drawn) : null;
   }
 
@@ -93,7 +94,8 @@ export class HandView {
     this.discards = [];
   }
 
-  public playCard(index: number) {
+  public playCard(id: number) {
+    const index = this.hand.findIndex(x => x.id === id);
     const card = this.hand[index];
     if (card != null) {
       this.checkForSpCardFn(card.name);
@@ -102,7 +104,8 @@ export class HandView {
     }
   }
 
-  public returnDiscard(index: number) {
+  public returnDiscard(id: number) {
+    const index = this.discards.findIndex(x => x.id === id);
     const card = this.discards[index];
     if (card != null) {
       this.hand.unshift(card);

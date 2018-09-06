@@ -54,7 +54,7 @@
     class="card"
     [ngClass]="assignColorClass(card.name)"
     [slidable-card]="'right'"
-    (onExit)="playCard(i)"
+    (onExit)="playCard(card.id)"
   >
     <ion-card-header>
       <span>{{card.name}}</span>
@@ -97,7 +97,7 @@
       *ngFor="let card of discards; let i = index"
       class="card discard"
       [slidable-card]="'left'"
-      (onExit)="returnDiscard(i)"
+      (onExit)="returnDiscard(card.id)"
     >
       <ion-card-header>
         <span>{{card.name}}</span>
