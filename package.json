@@ -1,6 +1,8 @@
 {
   "name": "bog_deck_manager",
   "version": "0.0.1",
+  "repository": "https://github.com/DonChatelain/battleofgods-decks.git",
+  "license": "MIT",
   "author": "Don Chatelain",
   "homepage": "https://battleofgods.now.sh",
   "scripts": {
@@ -8,7 +10,8 @@
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
     "lint": "ionic-app-scripts lint",
-    "local": "ionic serve -c --platform ios"
+    "local": "ionic serve -c --platform ios",
+    "android:build": "ionic cordova build android --prod --release"
   },
   "dependencies": {
     "@angular/animations": "5.2.11",
@@ -34,6 +37,7 @@
     "cordova-plugin-whitelist": "^1.3.3",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
+    "node-sass": "^4.11.0",
     "rxjs": "5.5.11",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.26"
